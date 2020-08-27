@@ -23,6 +23,7 @@ export default {
   components: {
     SearchField
   },
+
   data() {
     return {
       pokemons: [],
@@ -30,13 +31,22 @@ export default {
     };
   },
   created: function() {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=200&offset=0")
-      .then(response => (this.pokemons = response.data.results));
+    this.getPokemonValues();
   },
+
   methods: {
     onSubmitValue(value) {
-      this.searchTextValue = value;
+      if (value === "") {
+        this.getPokemonValues();
+      }
+      this.pokemons = this.pokemons.filter(pokemon =>
+        pokemon.name.includes(value.toLowerCase())
+      );
+    },
+    getPokemonValues() {
+      axios
+        .get("https://pokeapi.co/api/v2/pokemon?limit=200&offset=0")
+        .then(response => (this.pokemons = response.data.results));
     }
   }
 };
