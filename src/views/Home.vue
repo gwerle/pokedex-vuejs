@@ -8,21 +8,22 @@
     />
     <h1 id="title">Find more informations about your favorite Pokemon!</h1>
     <SearchField @textSubmit="onSubmitValue" :fieldError="fieldError" />
-    <div v-for="(poke, index) in pokemons" :key="index">
-      <h1>{{ poke.name }}</h1>
-      <h2>{{ poke.url }}</h2>
+    <div v-for="poke in pokemons" :key="poke.name">
+      <Pokemon :name="poke.name" :url="poke.url" />
     </div>
   </div>
 </template>
 
 <script>
 import SearchField from "@/components/SearchField.vue";
+import Pokemon from "@/components/Pokemon.vue";
 import axios from "axios";
 
 export default {
   name: "Home",
   components: {
-    SearchField
+    SearchField,
+    Pokemon
   },
   data() {
     return {
