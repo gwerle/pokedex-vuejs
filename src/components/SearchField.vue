@@ -3,29 +3,38 @@
     <b-input-group>
       <b-form-input
         v-model="text"
-        type="text"
+        type="search"
         placeholder="Search by name..."
+        :state="this.fieldError.visible ? false : null"
       ></b-form-input>
 
       <b-input-group-append>
         <b-btn @click="onClickButton()" variant="outline-primary">Submit</b-btn>
       </b-input-group-append>
     </b-input-group>
+    <div id="hint-text-error" v-if="this.fieldError.visible">
+      {{ this.fieldError.message }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SearchField",
   data() {
     return {
       text: ""
     };
   },
+  mounted: function() {
+    console.log(this.fieldError.visible);
+  },
   methods: {
     onClickButton() {
       this.$emit("textSubmit", this.text);
     }
+  },
+  props: {
+    fieldError: Object
   }
 };
 </script>
@@ -36,5 +45,13 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+}
+
+#hint-text-error {
+  text-align: left;
+  margin-left: 10px;
+  font-size: 11px;
+  color: var(--red);
+  font-weight: bold;
 }
 </style>

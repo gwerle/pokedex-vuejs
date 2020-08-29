@@ -7,9 +7,10 @@
       width="250px"
     />
     <h1 id="title">Find more informations about your favorite Pokemon!</h1>
-    <SearchField @textSubmit="onSubmitValue" />
+    <SearchField @textSubmit="onSubmitValue" :fieldError="fieldError" />
     <div v-for="(poke, index) in pokemons" :key="index">
       <h1>{{ poke.name }}</h1>
+      <h2>{{ poke.url }}</h2>
     </div>
   </div>
 </template>
@@ -23,30 +24,42 @@ export default {
   components: {
     SearchField
   },
-
   data() {
     return {
+      allPokemons: [],
       pokemons: [],
-      searchTextValue: ""
+      searchTextValue: "",
+      fieldError: {
+        visible: false,
+        message: "saasfda"
+      }
     };
   },
   created: function() {
-    this.getPokemonValues();
+    this.getAllPokemonValues();
   },
 
   methods: {
     onSubmitValue(value) {
-      if (value === "") {
-        this.getPokemonValues();
+      if (value.length <= 2) {
+        this.fieldError = {
+          visible: true,
+          message: "3 characters minimum"
+        };
+      } else {
+        this.fieldError = {
+          visible: false,
+          message: ""
+        };
+        this.pokemons = this.allPokemons.filter(pokemon =>
+          pokemon.name.includes(value.toLowerCase())
+        );
       }
-      this.pokemons = this.pokemons.filter(pokemon =>
-        pokemon.name.includes(value.toLowerCase())
-      );
     },
-    getPokemonValues() {
+    getAllPokemonValues() {
       axios
         .get("https://pokeapi.co/api/v2/pokemon?limit=200&offset=0")
-        .then(response => (this.pokemons = response.data.results));
+        .then(response => (this.allPokemons = response.data.results));
     }
   }
 };
