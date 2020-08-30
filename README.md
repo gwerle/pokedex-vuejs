@@ -1,24 +1,14 @@
 # pokedex-vuejs
 
-## Project setup
-```
-yarn install
-```
+## Mais informações
+Projeto que usa vue.js para criar uma Pokedéx, o usuário pode pesquisar seu Pokémon favorito, verificar quais jogos ele está disponível e onde pode capturar um.
 
-### Compiles and hot-reloads for development
+### Compila e usa o hot-reload (para ambiente de desenvolvimento)
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Compila e gera o build
 ```
 yarn build
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -30,7 +30,7 @@
         <b-icon icon="geo-alt" scale="1"></b-icon>
       </b-button>
       <b-modal :id="pokemonInfo.name" :title="pokemonInfo.name">
-        <p class="my-4">{{ pokemonInfo.id }}</p>
+        <LocationInfo :url="pokemonInfo.location_area_encounters" />
       </b-modal>
     </div>
   </div>
@@ -38,9 +38,13 @@
 
 <script>
 import axios from "axios";
+import LocationInfo from "./LocationInfo";
 
 export default {
   name: "Pokemon",
+  components: {
+    LocationInfo
+  },
   props: {
     name: String,
     url: String

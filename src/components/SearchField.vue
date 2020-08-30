@@ -26,9 +26,6 @@ export default {
       text: ""
     };
   },
-  mounted: function() {
-    console.log(this.fieldError.visible);
-  },
   methods: {
     onClickButton() {
       this.$emit("textSubmit", this.text);

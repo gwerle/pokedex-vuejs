@@ -6,11 +6,13 @@
       height="250px"
       width="250px"
     />
-    <h1 id="title">Find more informations about your favorite Pokemon!</h1>
+    <h1 id="title">Find more informations about your favorite Pokémon!</h1>
     <SearchField @textSubmit="onSubmitValue" :fieldError="fieldError" />
     <div id="flex-div">
-      <div v-for="poke in pokemons" :key="poke.name">
-        <Pokemon :name="poke.name" :url="poke.url" />
+      <div id="flex-div-container">
+        <div v-for="poke in pokemons" :key="poke.name">
+          <Pokemon :name="poke.name" :url="poke.url" />
+        </div>
       </div>
     </div>
   </div>
@@ -74,9 +76,13 @@ export default {
 }
 #flex-div {
   display: flex;
+  justify-content: center;
+}
+#flex-div-container {
+  display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 </style>
