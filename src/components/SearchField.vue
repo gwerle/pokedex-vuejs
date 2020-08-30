@@ -5,6 +5,7 @@
         v-model="text"
         type="search"
         placeholder="Search by name..."
+        v-on:keyup.enter="onClickButton()"
         :state="this.fieldError.visible ? false : null"
       ></b-form-input>
 

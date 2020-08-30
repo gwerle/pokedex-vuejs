@@ -8,8 +8,10 @@
     />
     <h1 id="title">Find more informations about your favorite Pokemon!</h1>
     <SearchField @textSubmit="onSubmitValue" :fieldError="fieldError" />
-    <div v-for="poke in pokemons" :key="poke.name">
-      <Pokemon :name="poke.name" :url="poke.url" />
+    <div id="flex-div">
+      <div v-for="poke in pokemons" :key="poke.name">
+        <Pokemon :name="poke.name" :url="poke.url" />
+      </div>
     </div>
   </div>
 </template>
@@ -69,5 +71,12 @@ export default {
 <style lang="scss" scoped>
 #title {
   font-size: 24px;
+}
+#flex-div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 </style>
